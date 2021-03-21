@@ -28,12 +28,10 @@ class BookerAPI:
         return bookid
 
     def get_book_by_id(self, ID):
-        bookIDs = BookerAPI.gets_all_IDs(self)
-        for id in bookIDs:
-            for key, value in id.items():
-                if value == ID:
-                    print(f"\nFound: {key} {value}")
-
+       booking = "/booking/"
+       r = requests.get(self.CONSTURL+booking+str(ID))
+       print(r.text)
+    
 if __name__ == "__main__":
-    # CreateToken.createToken(CreateToken)
-    #BookerAPI.get_book_by_id(BookerAPI, 7)
+    # BookerAPI.createToken(BookerAPI)
+    BookerAPI.get_book_by_id(BookerAPI, 7)
