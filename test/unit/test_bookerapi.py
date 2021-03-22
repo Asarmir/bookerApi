@@ -34,3 +34,22 @@ class TestBookerAPI(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+# Idea to help with figuring out the api.
+"""
+def update_booking(booking_id, auth_token, firstname = 'Jim', lastname = 'Brown', totalprice = 111, depositpaid = True, checkin = '2018-01-01', checkout = '2019-01-01', additionalneeds = 'Breakfast'):
+    return requests.put(_url('/booking/{:d}/'.format(booking_id)), json={
+        "firstname" : firstname,
+        "lastname" : lastname,
+        "totalprice" : totalprice,
+        "depositpaid" : depositpaid,
+        "bookingdates" : {
+            "checkin" : checkin,
+            "checkout" : checkin
+        },
+        "additionalneeds" : additionalneeds
+    }, cookies={
+        "token" : auth_token
+    })
+
+"""
