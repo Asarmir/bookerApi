@@ -45,19 +45,40 @@ class BookerAPI:
         return requests.post(url, data=json.dumps(payload), headers=header).json()
 
     def update_booking(self, ID, firstname, lastname, totalprice, depositpaid, checkin, checkout, additionalneeds):
-        pass
+        token = BookerAPI.get_Token(BookerAPI)
+        header = {'Content-Type': 'application/json'}
+        payload = {
+            "firstname" : firstname,
+            "lastname" : lastname,
+            "totalprice" : totalprice,
+            "depositpaid" : depositpaid,
+            "bookingdates" : {
+                "checkin" : checkin,
+                "checkout" : checkout
+            },
+            "additionalneeds" : additionalneeds
+        }
+        cookies = {"token" : token}
+       
+        return requests.put(BookerAPI._url("/booking/"+str(ID)+"/"), data=json.dumps(payload), headers=header, cookies=cookies).json()
 
+    def delete_booking(self, ID):
+        token = BookerAPI.get_Token(BookerAPI)
+        return requests.delete(BookerAPI._url(f"/booking/{ID}"), cookies = {"token":token})
+         
 if __name__ == "__main__":
-    # BookerAPI.get_Token(BookerAPI)
-    # BookerAPI.gets_all_IDs(BookerAPI)
+    # print(BookerAPI.get_Token(BookerAPI))
+    # print(BookerAPI.gets_all_IDs(BookerAPI))
     
-    # print(BookerAPI.get_book_by_id(BookerAPI, 8))
+    # print(BookerAPI.get_book_by_id(BookerAPI, 13))
     
-    # print(BookerAPI.get_book_by_name(BookerAPI, "Mary", "Ericsson"))
+    # print(BookerAPI.get_book_by_name(BookerAPI, "Meral", "Wilke"))
     
-    print(BookerAPI.create_booking(BookerAPI, firstname="Jim", lastname="Brown",totalprice=111, 
-    depositpaid=True, checkin="2018-01-01", checkout="2019-01-01", additionalneeds="Breakfast"))
+    # print(BookerAPI.create_booking(BookerAPI, firstname="Jim", lastname="Brown",totalprice=111, 
+    # depositpaid=True, checkin="2018-01-01", checkout="2019-01-01", additionalneeds="Breakfast"))
     
-    # BookerAPI.update_booking(BookerAPI, ID=13, firstname="James", lastname="Brown",totalprice=111, 
+    # print(BookerAPI.update_booking(BookerAPI, ID=13, firstname="THOMAS", lastname="Brown",totalprice=111, 
     # depositpaid=True, checkin="2018-01-01", checkout="2019-01-01", 
-    # additionalneeds="Breakfast")
+    # additionalneeds="Breakfast"))
+
+    # print(BookerAPI.delete_booking(BookerAPI, ID=1))
