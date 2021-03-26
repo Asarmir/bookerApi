@@ -65,20 +65,5 @@ class BookerAPI:
     def delete_booking(self, ID):
         token = BookerAPI.get_Token(BookerAPI)
         return requests.delete(BookerAPI._url(f"/booking/{ID}"), cookies = {"token":token})
-         
-if __name__ == "__main__":
-    # print(BookerAPI.get_Token(BookerAPI))
-    # print(BookerAPI.gets_all_IDs(BookerAPI))
-    
-    # print(BookerAPI.get_book_by_id(BookerAPI, 13))
-    
-    # print(BookerAPI.get_book_by_name(BookerAPI, "Meral", "Wilke"))
-    
-    # print(BookerAPI.create_booking(BookerAPI, firstname="Jim", lastname="Brown",totalprice=111, 
-    # depositpaid=True, checkin="2018-01-01", checkout="2019-01-01", additionalneeds="Breakfast"))
-    
-    # print(BookerAPI.update_booking(BookerAPI, ID=13, firstname="THOMAS", lastname="Brown",totalprice=111, 
-    # depositpaid=True, checkin="2018-01-01", checkout="2019-01-01", 
-    # additionalneeds="Breakfast"))
 
-    # print(BookerAPI.delete_booking(BookerAPI, ID=1))
+print(BookerAPI.gets_all_IDs(BookerAPI))
