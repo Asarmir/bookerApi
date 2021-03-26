@@ -66,4 +66,4 @@ class BookerAPI:
         token = BookerAPI.get_Token(BookerAPI)
         return requests.delete(BookerAPI._url(f"/booking/{ID}"), cookies = {"token":token})
 
-print(BookerAPI.gets_all_IDs(BookerAPI))
+print(BookerAPI.get_book_by_id(BookerAPI,5))
